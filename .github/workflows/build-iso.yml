@@ -51,29 +51,30 @@ jobs:
           git clone https://gitea.artixlinux.org/artix/iso-profiles --branch community
 
           ## Try to pin Artix Linux
-          #mkdir -p /usr/share/artools/iso-profiles/common/root-overlay/etc
-          #cat > /usr/share/artools/iso-profiles/common/root-overlay/etc/pacman.conf << 'EOF'
-          ##
-          ## /etc/pacman.conf
-          ##
-          ## See the pacman.conf(5) manpage for option and repository directives
+          mkdir -p $HOME/artools-workspace/iso-profiles/common/root-overlay/etc
+          mkdir -p $HOME/artools-workspace/iso-profiles/common/root-overlay/etc/local.d
+          cat > $HOME/artools-workspace/iso-profiles/xfce/root-overlay/etc/pacman.conf << 'EOF'
           #
-          #[options]
-          #HoldPkg     = pacman glibc
-          #Architecture = auto
+          # /etc/pacman.conf
           #
-          ##
-          ## Pin Arch Linux to a certain date
-          ##
+          # See the pacman.conf(5) manpage for option and repository directives
+
+          [options]
+          HoldPkg     = pacman glibc
+          Architecture = auto
+
           #
-          #[core]
-          #Server = https://archive.artixlinux.org/repos/2025/09/15/$repo/os/$arch
-          #Server = https://archive.archlinux.org/repos/2025/09/15/$repo/os/$arch
+          # Pin Arch Linux to a certain date
           #
-          #[extra]
-          #Server = https://archive.artixlinux.org/repos/2025/09/15/$repo/os/$arch
-          #Server = https://archive.archlinux.org/repos/2025/09/15/$repo/os/$arch
-          #EOF
+
+          [core]
+          Server = https://archive.artixlinux.org/repos/2025/10/15/$repo/os/$arch
+          Server = https://archive.archlinux.org/repos/2025/10/15/$repo/os/$arch
+
+          [extra]
+          Server = https://archive.artixlinux.org/repos/2025/10/15/$repo/os/$arch
+          Server = https://archive.archlinux.org/repos/2025/130/15/$repo/os/$arch
+          EOF
           #
           # Build ISO
           buildiso -p xfce
