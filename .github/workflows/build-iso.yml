@@ -44,16 +44,16 @@ jobs:
           # GitHub Actions mounts the workspace from host, which is not overlayfs
           # This avoids the nested overlayfs issue
           mkdir -p $GITHUB_WORKSPACE/artools-workspace
-          ln -sf $GITHUB_WORKSPACE/artools-workspace $HOME
+          ln -sf $GITHUB_WORKSPACE/artools-workspace /var/lib/artools
 
           # Clone and set up iso-profiles
-          cd $HOME/artools-workspace
+          cd $GITHUB_WORKSPACE
           git clone https://gitea.artixlinux.org/aldum/iso-profiles --branch origin-community
 
           ## Try to pin Artix Linux
-          mkdir -p $HOME/artools-workspace/iso-profiles/common/root-overlay/etc
-          mkdir -p $HOME/artools-workspace/iso-profiles/common/root-overlay/etc/local.d
-          cat > $HOME/artools-workspace/iso-profiles/xfce/root-overlay/etc/pacman.conf << 'EOF'
+          mkdir -p $GITHUB_WORKSPACE/iso-profiles/common/root-overlay/etc
+          mkdir -p $GITHUB_WORKSPACE/iso-profiles/common/root-overlay/etc/local.d
+          cat > $GITHUB_WORKSPACE/iso-profiles/xfce/root-overlay/etc/pacman.conf << 'EOF'
           #
           # /etc/pacman.conf
           #
