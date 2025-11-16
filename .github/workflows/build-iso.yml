@@ -1,5 +1,5 @@
 # Build Artix Live ISO on GitHub Actions
-# 
+#
 # Fix for overlayfs issue: Use GitHub Actions workspace directory for artools
 # build output. The workspace is mounted from the host filesystem (ext4) which
 # is not overlayfs. This avoids nested overlayfs (overlayfs on top of overlayfs)
@@ -32,7 +32,7 @@ jobs:
           pacman -Syu --noconfirm
           pacman -S --noconfirm artix-keyring
           pacman-key --populate artix
-          
+
       - name: Install build tools
         run: |
           pacman -S --noconfirm artools iso-profiles git base-devel squashfs-tools dosfstools mtools lvm2
@@ -51,7 +51,7 @@ jobs:
           # This avoids the nested overlayfs issue
           mkdir -p $GITHUB_WORKSPACE/artools-build
           ln -sf $GITHUB_WORKSPACE/artools-build /var/lib/artools
-          
+
           # Clone and set up iso-profiles
           #git clone https://gitea.artixlinux.org/artix/iso-profiles
           ##( cd iso-profiles ; git checkout community )
