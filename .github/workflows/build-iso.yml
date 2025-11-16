@@ -48,7 +48,7 @@ jobs:
 
           # Clone and set up iso-profiles
           cd $HOME/artools-workspace
-          git clone https://gitea.artixlinux.org/artix/iso-profiles --branch community
+          git clone https://gitea.artixlinux.org/aldum/iso-profiles --branch origin-community
 
           ## Try to pin Artix Linux
           mkdir -p $HOME/artools-workspace/iso-profiles/common/root-overlay/etc
